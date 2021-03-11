@@ -5,7 +5,17 @@ import getters from './getters.js';
 
 const store = createStore({
     state() {
-        return {};
+        return {
+            settings: {
+                mode: null,
+                desktop: null,
+                language: null,
+            },
+            modes: {
+                loggedIn: true,
+                fullscreen: false,
+            },
+        };
     },
     mutations: mutations,
     actions: actions,
