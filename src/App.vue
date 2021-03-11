@@ -6,4 +6,7 @@
 export default {}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "@/assets/sass/typography.scss";
+@import "@/assets/sass/reset.scss";
+</style>
