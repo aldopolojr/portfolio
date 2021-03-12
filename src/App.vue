@@ -1,12 +1,18 @@
 <template>
-    <div :class="frameClass"></div>
+    <div :class="frameClass">
+        <login-screen v-if="!modes.loggedIn"></login-screen>
+        <home-screen v-else></home-screen>
+    </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 import { mapActions } from 'vuex';
+import HomeScreen from './components/homescreen/HomeScreen.vue';
+import LoginScreen from './components/login/LoginScreen.vue';
 
 export default {
+    components: { LoginScreen, HomeScreen },
     computed: {
         ...mapGetters(['settings', 'modes']),
         frameClass() {
@@ -18,7 +24,7 @@ export default {
     },
     beforeCreate() {
         this.$store.dispatch('updateSettings', { key: 'mode', val: localStorage.getItem("mode") || 'light' });
-        this.$store.dispatch('updateSettings', { key: 'desktop', val: localStorage.getItem("desktop") || 'bigsur' });
+        this.$store.dispatch('updateSettings', { key: 'desktop', val: localStorage.getItem("desktop") || 'sierra' });
         this.$store.dispatch('updateSettings', { key: 'language', val: localStorage.getItem("language") || 'eng' });
     },
 }

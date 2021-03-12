@@ -5,4 +5,7 @@ export default {
     updateModes(state, payload) {
         state.modes[payload.key] = payload.val;
     },
+    updateDisplay(state, payload) {
+        state.display[payload.key] = payload.val;
+    },
 }

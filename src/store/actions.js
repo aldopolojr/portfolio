@@ -5,4 +5,7 @@ export default {
     updateModes(context, payload) {
         context.commit('updateModes', payload);
     },
+    updateDisplay(context, payload) {
+        context.commit('updateDisplay', payload);
+    },
 }

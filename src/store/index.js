@@ -15,6 +15,10 @@ const store = createStore({
                 loggedIn: true,
                 fullscreen: false,
             },
+            display: {
+                title: 'aldopolojr',
+                time: null,
+            },
         };
     },
     mutations: mutations,

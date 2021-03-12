@@ -5,4 +5,7 @@ export default {
     modes(state) {
         return state.modes;
     },
+    display(state) {
+        return state.display;
+    },
 }
