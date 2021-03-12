@@ -39,6 +39,7 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 
     &::after {
         content: "";
@@ -63,7 +64,6 @@ export default {
     &.loginscreen::after {
         filter: blur(1.5rem);
         transform: scale(1.2);
-        // overflow
     }
 }
 </style>

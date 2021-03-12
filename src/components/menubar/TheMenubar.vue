@@ -165,7 +165,9 @@ export default {
         },
         toggleMenu(key) {
             if (!(key === 'app' && this.display.title === 'aldopolojr')) {
-                this.closeMenus();
+                if (!(this.menus[key + 'Open'])) {
+                    this.closeMenus();
+                }
                 this.menus[key + 'Open'] = !this.menus[key + 'Open'];
             }
         },
