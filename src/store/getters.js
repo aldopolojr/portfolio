@@ -8,4 +8,7 @@ export default {
     display(state) {
         return state.display;
     },
+    apps(state) {
+        return state.appModes;
+    },
 }

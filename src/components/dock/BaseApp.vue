@@ -1,9 +1,7 @@
 <template>
-    <div class="app">
-        <a class="app__link">
-            <div class="app__img">
-                <img :src="app.src" :alt="app.name">
-            </div>
+    <div class="app" :class="visibleClass" :style="'--i: ' + app.order" @mouseover="scaleEffect" @mouseleave="deleteScale">
+        <a class="app__link" @click="clickApp(app.name)">
+            <img class="app__img" :src="app.src" :alt="app.name">
             <p class="app__name">{{ app.name }}</p>
         </a>
     </div>
@@ -12,6 +10,25 @@
 <script>
 export default {
     props: ['app'],
+    inject: ['clickApp'],
+    computed: {
+        visibleClass() {
+            return this.app.order === 0 ? { 'hidden': true } : { 'hidden': false };
+        },
+    },
+    methods: {
+        scaleEffect(e) {
+            e.target.closest('.app').classList.add('scale1');
+            e.target.closest('.app')?.nextElementSibling?.classList.add('scale2');
+            e.target.closest('.app')?.previousElementSibling?.classList.add('scale2');
+        },
+        deleteScale() {
+            document.querySelectorAll('.app').forEach(node => {
+                node.classList.remove('scale1');
+                node.classList.remove('scale2');
+            });
+        },
+    },
 }
 </script>
 
@@ -19,38 +36,34 @@ export default {
 .app {
     margin: 0 0 calcRem(30px);
     text-align: center;
+    order: var(--i);
+
+    &.hidden { display: none; }
 
     &__link {
         position: relative;
         margin: 0 auto;
-        width: 56px;
+        width: 65px;
     }
 
-    &:last-child {
-        display: none;
-    }
-}
-
-.app__img {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-
-    img {
+    &__img {
+        position: relative;
+        margin: 0 auto;
         width: 100%;
         vertical-align: bottom;
     }
-}
 
-.app__name {
-    color: $txt-white;
-    font-size: calcRem(12px);
+    &__name {
+        color: $txt-white;
+        font-size: calcRem(12px);
+    }
 }
 
 @include desktop {
-    .app { margin: 0 0 calcRem(5px); }
-    .app:last-child { display: block; }
-    .app:hover { transform: scale(1.1); transform-origin: bottom; }
+    .app { margin: 0 0 calcRem(5px); order: 0; transform-origin: bottom; @include transition(transform 0.1s, margin 0.1s);}
+    .app.hidden { display: block; }
+    .app.scale1 { margin: 0 calcRem(5px) calcRem(5px); transform: scale(1.2); }
+    .app.scale2 { margin: 0 calcRem(2.5px) calcRem(5px); transform: scale(1.1); }
     .app__link { width: 50px; }
 
     .app__name { 
@@ -63,6 +76,7 @@ export default {
         -webkit-backdrop-filter: saturate(200%) blur(20px);
         backdrop-filter: saturate(200%) blur(20px);
         border-radius: 3px;
+        z-index: 100;
     }
 
     .app__name::before {
@@ -77,32 +91,11 @@ export default {
         border-right: 5px solid transparent;
     }
 
-    .app__link:hover .app__name {
-        display: block;
-    }
-}
+    .app__link:hover .app__name { display: block; }
 
-.light {
-    @include desktop {
-        .app__name {
-            background: rgba($secondary-bg-light, 0.8);
-            color: $txt-black;
-        }
-        .app__name::before {
-            border-top: 5px solid rgba($secondary-bg-light, 0.8);
-        }
-    }
-}
-
-.dark {
-    @include desktop {
-        .app__name {
-            background: rgba($secondary-bg-dark, 0.8);
-            color: $txt-white;
-        }
-        .app__name::before {
-            border-top: 5px solid rgba($secondary-bg-dark, 0.8);
-        }
-    }
+    .light .app__name { background: rgba($secondary-bg-light, 0.8); color: $txt-black; }
+    .light .app__name::before { border-top: 5px solid rgba($secondary-bg-light, 0.8); }
+    .dark .app__name { background: rgba($secondary-bg-dark, 0.8); color: $txt-white; }
+    .dark .app__name::before { border-top: 5px solid rgba($secondary-bg-dark, 0.8); }
 }
 </style>

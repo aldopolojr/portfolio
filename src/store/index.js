@@ -10,6 +10,7 @@ const store = createStore({
                 mode: null,
                 desktop: null,
                 language: null,
+                dockVisible: null,
             },
             modes: {
                 loggedIn: true,
@@ -18,6 +19,21 @@ const store = createStore({
             display: {
                 title: 'aldopolojr',
                 time: null,
+            },
+            appModes: {
+                finder: { open: false, show: false },
+                siri: { open: false, show: false },
+                appstore: { open: false, show: false },
+                mail: { open: false, show: false },
+                messages: { open: false, show: false },
+                reminders: { open: false, show: false },
+                linkedin: { open: false, show: false },
+                facebook: { open: false, show: false },
+                instagram: { open: false, show: false },
+                music: { open: false, show: false },
+                netflix: { open: false, show: false },
+                settings: { open: false, show: false },
+                bin: { open: false, show: false },
             },
         };
     },

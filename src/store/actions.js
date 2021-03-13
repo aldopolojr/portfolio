@@ -8,4 +8,7 @@ export default {
     updateDisplay(context, payload) {
         context.commit('updateDisplay', payload);
     },
+    updateApps(context, payload) {
+        context.commit('updateApps', payload);
+    },
 }
