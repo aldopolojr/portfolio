@@ -11,7 +11,7 @@
                     <a class="submenu__btn">{{ content[settings.language].systemPreferences }}</a>
                     <a class="submenu__btn">App Store</a>
                     <div class="submenu__divider"></div>
-                    <a class="submenu__btn">{{ content[settings.language].logout }}
+                    <a class="submenu__btn" @click="logout">{{ content[settings.language].logout }}
                         <span class="submenu__shortcut"><i class="icon icon-shift"></i><i class="icon icon-cmd"></i>Q</span>
                     </a>
                 </div>
@@ -200,6 +200,9 @@ export default {
         setLanguage(lang) {
             this.updateSettings({ key: 'language', val: lang});
             localStorage.setItem("language", lang);
+        },
+        logout() {
+            this.$store.dispatch('updateModes', { key: 'loggedIn', val: false });
         },
     },
     beforeCreate() {

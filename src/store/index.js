@@ -13,7 +13,7 @@ const store = createStore({
                 dockVisible: null,
             },
             modes: {
-                loggedIn: true,
+                loggedIn: false,
                 fullscreen: false,
             },
             display: {

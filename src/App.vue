@@ -26,7 +26,7 @@ export default {
         this.$store.dispatch('updateSettings', { key: 'mode', val: localStorage.getItem("mode") || 'light' });
         this.$store.dispatch('updateSettings', { key: 'desktop', val: localStorage.getItem("desktop") || 'bigsur' });
         this.$store.dispatch('updateSettings', { key: 'language', val: localStorage.getItem("language") || 'eng' });
-        this.$store.dispatch('updateSettings', { key: 'dockVisible', val: localStorage.getItem("dockVisible") || false });
+        this.$store.dispatch('updateSettings', { key: 'dockVisible', val: localStorage.getItem("dockVisible") || true });
     },
 }
 </script>
@@ -35,6 +35,7 @@ export default {
 @import "@/assets/sass/typography.scss";
 @import "@/assets/sass/reset.scss";
 @import "@/assets/sass/base.scss";
+@import "@/assets/sass/keyframes.scss";
 
 .frame {
     position: relative;

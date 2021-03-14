@@ -1,0 +1,16 @@
+@include keyframes(loginLoader) {
+    from { width: 0% ;}
+    to { width: 100% ;}
+}
+
+@include keyframes(loginFail) {
+    0% { transform: translateX(-15) ;}
+    12.5% { transform: translateX(15px) ;}
+    25% { transform: translateX(-15px) ;}
+    37.5% { transform: translateX(15px) ;}
+    50% { transform: translateX(-15px) ;}
+    62.5% { transform: translateX(15px) ;}
+    75% { transform: translateX(-15px) ;}
+    87.5% { transform: translateX(15px) ;}
+    100% { transform: translateX(0px) ;}
+}
