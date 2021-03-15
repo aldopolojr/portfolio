@@ -86,6 +86,6 @@ export default {
     .dockVisible.dock-container:hover .dock { transform: translateY(0); }
 
     .light .dock { background: rgba($secondary-bg-light, 0.5); }
-    .dark .dock { background: rgba($secondary-bg-dark, 0.5); }
+    .dark .dock { background: rgba($secondary-bg-dark, 0.65); }
 }
 </style>

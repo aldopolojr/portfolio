@@ -17,7 +17,7 @@
         <div class="login__pwd" :class="pwdClass">
             <div class="login__input-container" ref="inputContainer">
                 <a class="login__btn login__btn--goback" @click="selectProfile('')"><i class="icon icon-arrow-left-circle"></i></a>
-                <input class="login__input" type="password" :placeholder="content[settings.language].placeholder" v-model="pwdInput" @keyup.enter="failLogin">
+                <input class="login__input" type="password" :placeholder="content[settings.language].placeholder" v-model="pwdInput" @keyup.enter="failLogin" :disabled="waitLogin">
                 <a class="login__btn login__btn--login" v-show="pwdInput !== ''" @click="failLogin"><i class="icon icon-arrow-right-circle"></i></a>
             </div>
         </div>
@@ -93,7 +93,7 @@ export default {
                 setTimeout( ()=> { 
                     this.$refs.inputContainer.classList.remove('active');
                     this.waitLogin = false;
-                }, 400);
+                }, 1000);
             }
         },
     },
@@ -158,7 +158,7 @@ export default {
     &__input-container {
         position: relative;
 
-        &.active { @include animation('loginFail 0.4s infinite'); }
+        &.active { @include animation('loginFail 0.4s infinite 0.6s'); }
     }
 
     &__input {
@@ -200,7 +200,8 @@ export default {
         width: 200px;
         height: 8px;
         border-radius: 15px;
-        background: $tertiary-dark;
+        -webkit-backdrop-filter: saturate(200%) blur(20px);
+        backdrop-filter: saturate(200%) blur(20px);
     }
 
     &__progress-bar {
@@ -225,9 +226,11 @@ export default {
 // COLORS
 .light {
     .login__input { background: rgba($tertiary-light, 0.4); }
+    .login__progress-container { background: rgba($main-bg-light, 0.4); }
 }
 .dark {
     .login__input { background: rgba($tertiary-dark, 0.6); }
+    .login__progress-container { background: rgba($main-bg-dark, 0.6); }
 }
 
 @include phone-md {
